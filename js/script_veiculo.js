@@ -1,3 +1,6 @@
+import { calculaSeguro } from "./script_calculo.js"
+import { calculaIpva } from "./script_calculo.js"
+
 const veiculos = []
 
 const formDados = document.querySelector('#formulario')
@@ -22,14 +25,32 @@ formDados.addEventListener('submit', (evt) =>{
     listVeiculo()
 })
 
+
 const addVeiculo = (objVeiculo) => {
     veiculos.push(objVeiculo)
 }
 
+
 const listVeiculo = () => {
+    
+
     divResultado.innerHTML = ""
 
     veiculos.forEach((elem, i) =>{
-        divResultado.innerHTML += `<div class='item-veiculo'>${i + 1} - ${elem.marca} ${elem.modelo} ${elem.placa} ${elem.ano} ${elem.valor} ${elem.combustivel} </div>`
+        const seguro = calculaSeguro(elem)
+        const ipva = calculaIpva(elem)
+        /*var combustivel
+        if(elem.combustivel = 1){
+            combustivel = "gasolina"
+        }else if(elem.combustivel = 2){
+            combustivel = "etanol"
+        }else if(elem.combustivel = 3){
+            combustivel = "biocombustíveis"
+        }else if(elem.combustivel = 4){
+            combustivel = "híbrido"
+        }else{
+            combustivel = "elétrico"
+        }*/
+        divResultado.innerHTML += `<div class='item-veiculo'>${i + 1} - Marca: ${elem.marca}, Modelo: ${elem.modelo}, Placa: ${elem.placa}, Ano: ${elem.ano}, Valor: ${elem.valor}, ${elem.combustivel}, Valor do seguro: ${seguro}, Valor do ipva: ${ipva} </div>`
     })
 }
