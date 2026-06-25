@@ -23,6 +23,7 @@ formDados.addEventListener('submit', (evt) =>{
 
     addVeiculo(veiculo)
     listVeiculo()
+    formDados.reset()
 })
 
 
